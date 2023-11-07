@@ -6,5 +6,5 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = UserCreationForm.Meta.fields
 
-class CustomAuthenticationForm():
+class CustomAuthenticationForm(AuthenticationForm):
     pass
