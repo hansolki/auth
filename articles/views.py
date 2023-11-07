@@ -1,13 +1,21 @@
 from django.shortcuts import render, redirect
 from .forms import ArticleForm
+from .models import Article
+
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    # return render(request, 'index.html')
+    articles = Article.objects.all()
+
+    context = {
+        'articles': articles,
+    }
+    return render(request, 'index.html', context)
 
 def create(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
-        if forms.is_valid():
+        if form.is_valid():
             article = form.save(commit=False)
             article.user = request.user
             article.save()
